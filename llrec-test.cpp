@@ -86,9 +86,14 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
-
-
-
+    Node* smaller;
+    Node* larger;
+    llpivot(head, smaller, larger, 7);
+    cout << "After sorting..." << endl;
+    cout << "Larger: ";
+    print(larger);
+    cout << "Smaller: ";
+    print(smaller);
     
     return 0;
 
