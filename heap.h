@@ -61,7 +61,7 @@ public:
 
 private:
   /// Add whatever helper functions and data members you need below
-
+  void heapify() const;
 
 
 
