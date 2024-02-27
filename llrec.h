@@ -4,6 +4,7 @@
 #define NULL 0
 #endif
 
+#include <iostream>
 /**
  * Node struct for both problems
  */
@@ -84,8 +85,31 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+  // check base case 
+  if (head == nullptr){
+    return head;
+  }
 
-
+  if (pred(head->val)){ // if whatever the Comp is returns true...
+    // remove the current Node
+    Node* temp = head;
+    std::cout << "filtered: head before is " << head->val << std::endl;
+    head = head->next;
+    delete temp;
+    if (head){
+      std::cout << "filtered: head after is " << head->val << std::endl;
+    }
+    return llfilter(head, pred);
+  } else {
+    // recursively call llfilter on the next Node
+    head->next = llfilter(head->next, pred);
+    std::cout << "not filtered: head is " << head->val << std::endl;
+    // at the end, return the filtered list
+    if(head == nullptr){
+      return head->next;
+    }
+    return head;
+  }
 }
 
 #endif
