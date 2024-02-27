@@ -106,9 +106,9 @@ int main(int argc, char* argv[])
     // print(smaller);
 
     // testing llfilter
-    isEven pred1;
+    // isEven pred1;
     isDivisibleBy3 pred2;
-    llfilter(head, pred1);
+    llfilter(head, pred2);
     cout << "After filtering: ";
     print(head);
     

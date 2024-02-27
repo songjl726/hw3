@@ -72,7 +72,7 @@ void llpivotHelper(Node*& head, Node*& smaller, Node*& larger, int pivot);
  *
  */
 template <typename Comp>
-Node* llfilter(Node* head, Comp pred);
+Node* llfilter(Node*& head, Comp pred);
 
 //*****************************************************************************
 // Since template implementations should be in a header file, we will
@@ -80,36 +80,27 @@ Node* llfilter(Node* head, Comp pred);
 //*****************************************************************************
 
 template <typename Comp>
-Node* llfilter(Node* head, Comp pred)
+Node* llfilter(Node*& head, Comp pred)
 {
     //*********************************************
     // Provide your implementation below
     //*********************************************
   // check base case 
   if (head == nullptr){
-    return head;
+    return nullptr;
   }
+
+  // head recursion HHAHAHAH get it... ok bye
+  head->next = llfilter(head->next, pred);
 
   if (pred(head->val)){ // if whatever the Comp is returns true...
     // remove the current Node
     Node* temp = head;
-    std::cout << "filtered: head before is " << head->val << std::endl;
     head = head->next;
     delete temp;
-    if (head){
-      std::cout << "filtered: head after is " << head->val << std::endl;
-    }
-    return llfilter(head, pred);
-  } else {
-    // recursively call llfilter on the next Node
-    head->next = llfilter(head->next, pred);
-    std::cout << "not filtered: head is " << head->val << std::endl;
-    // at the end, return the filtered list
-    if(head == nullptr){
-      return head->next;
-    }
-    return head;
-  }
+  } 
+  
+  return head;
 }
 
 #endif
