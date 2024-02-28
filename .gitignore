@@ -1,4 +1,4 @@
 *.o
 llrec-test
 stack_test
-heap_test
+heap-test

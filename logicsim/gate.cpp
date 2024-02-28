@@ -88,3 +88,31 @@ Event* Or2Gate::update(uint64_t current_time)
 	}
   return e;
 }
+
+// my NotGate implementation below
+NotGate::NotGate(Wire* a, Wire* o) : Gate(1,o) { 
+  wireInput(0,a);
+}
+
+Event* NotGate::update(uint64_t current_time) {
+  Event* e = nullptr;
+  char in_state = m_inputs[0]->getState();
+  char out_state;
+
+  if(in_state == 'X'){
+    out_state = in_state;
+  } else if (in_state == '0'){
+    out_state = '1';
+  } else { // this means in_state == '1'
+    out_state = '0';
+  }
+
+  // make a new event if the state has changed
+  if(out_state != m_current_state){
+    m_current_state = out_state;
+    uint64_t next = current_time + m_delay;
+    e = new Event {next, m_output, out_state};
+  }
+
+  return e;
+}
