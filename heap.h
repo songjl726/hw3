@@ -91,7 +91,7 @@ void Heap<T, PComparator>::push(const T& item){
     size_t parent_idx = (idx - 1) / arity_;
     T& current = data_[idx];
     T& parent = data_[parent_idx];
-    if (!comp_(current, parent)){
+    if (!comp_(current, parent) || current == parent){
       break;
     }
     // std::cout << "Now swapping " << current << " with " << parent << std::endl;
@@ -131,7 +131,7 @@ void Heap<T,PComparator>::pop()
     throw std::out_of_range("Empty heap");
   }
   // move the top item to the last spot, then pop pop back
-  data_[0] = data_.back();
+  std::swap(data_[0], data_.back());
   data_.pop_back();
 
   // then heapify the resulting heap with the new "best" (aka trickleDOWN)'
@@ -156,6 +156,7 @@ void Heap<T,PComparator>::pop()
     if(best != idx){
       // std::cout << "Now swapping " << data_[idx] << " with " << data_[best] << std::endl;
       std::swap(data_[idx], data_[best]);
+      idx = best;
     } else {
       done = true;
     }

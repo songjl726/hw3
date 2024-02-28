@@ -95,22 +95,22 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
-    // // testing llrec
-    // Node* smaller;
-    // Node* larger;
-    // llpivot(head, smaller, larger, 7);
-    // cout << "After sorting..." << endl;
-    // cout << "Larger: ";
-    // print(larger);
-    // cout << "Smaller: ";
-    // print(smaller);
+    // testing llrec
+    Node* smaller;
+    Node* larger;
+    llpivot(head, smaller, larger, 5);
+    cout << "After sorting..." << endl;
+    cout << "Larger: ";
+    print(larger);
+    cout << "Smaller: ";
+    print(smaller);
 
     // testing llfilter
-    // isEven pred1;
-    isDivisibleBy3 pred2;
-    llfilter(head, pred2);
-    cout << "After filtering: ";
-    print(head);
+    // // isEven pred1;
+    // isDivisibleBy3 pred2;
+    // llfilter(head, pred2);
+    // cout << "After filtering: ";
+    // print(head);
     
     return 0;
 
